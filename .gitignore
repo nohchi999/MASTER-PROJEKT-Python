@@ -7,6 +7,9 @@ __pycache__/
 .env
 *.log
 
+# Virtuelle Umgebungen
+myvenv/
+
 # SQLite Datenbanken
 *.sqlite3
 
