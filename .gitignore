@@ -1,0 +1,25 @@
+cat > .gitignore <<EOF
+# Bytecode & Cache
+__pycache__/
+*.pyc
+
+# Umgebungsvariablen & Logs
+.env
+*.log
+
+# SQLite Datenbanken
+*.sqlite3
+
+# IDE Ordner
+.vscode/
+.idea/
+
+# Daten & große Dateien
+data/
+*.csv
+*.json
+
+# Modelle
+models/
+*.pkl
+EOF
