@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 import matplotlib.ticker as ticker
+import seaborn as sns
 
 # -------------------------------
 # Konfiguration
@@ -52,14 +53,20 @@ for metric in metrics:
         plt.close()
         print(f"[INFO] Histogramm für {metric} gespeichert als: {histogram_path}")
 
-        # Boxplot
-        plt.figure(figsize=(6, 8))
-        plt.boxplot(plot_data, vert=True)
-        plt.title(f'Boxplot: {metric}')
-        plt.ylabel(f'{metric} (Watt)')
+
+        # Plot erstellen
+        plt.figure(figsize=(10, 6))
+        sns.boxplot(x=df['day_night'], y=df[metric])
+        plt.title('Boxplot des Stromverbrauchs (1.7.0) – Tag vs. Nacht')
+        plt.xlabel('Tageszeit')
+        plt.ylabel('Verbrauch in Watt')
+        plt.grid(True)
         boxplot_path = os.path.join(OUTPUT_PLOT_DIR, f'{metric}_boxplot.png')
         plt.savefig(boxplot_path)
         plt.close()
         print(f"[INFO] Boxplot für {metric} gespeichert als: {boxplot_path}")
+
+
+       
 
 print("[INFO] Plots erfolgreich erstellt.")
