@@ -14,15 +14,11 @@ Dieses Skript transformiert den DataFrame:
 import pandas as pd
 import os
 
-# -------------------------------
-# Konfiguration
-# -------------------------------
+
 INPUT_CSV_PATH = os.path.join('data', 'full_data.csv')
 OUTPUT_CSV_PATH = os.path.join('data', 'full_data_transformed.csv')
 
-# -------------------------------
-# 1. CSV laden
-# -------------------------------
+
 print("[INFO] Lade CSV-Datei...")
 df = pd.read_csv(INPUT_CSV_PATH)
 

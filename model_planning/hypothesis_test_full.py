@@ -11,20 +11,11 @@ import pandas as pd
 import os
 from scipy.stats import mannwhitneyu
 
-# -------------------------------
-# Konfiguration
-# -------------------------------
 INPUT_CSV_PATH = os.path.join('data', 'full_data_transformed.csv')
 
-# -------------------------------
-# 1. CSV laden
-# -------------------------------
 print("[INFO] Lade transformierte CSV-Datei...")
 df = pd.read_csv(INPUT_CSV_PATH, parse_dates=['timestamp'])
 
-# -------------------------------
-# 2. Prüfen, ob Spalten vorhanden sind
-# -------------------------------
 if '1.7.0' not in df.columns or 'day_night' not in df.columns:
     raise ValueError("Fehler: Benötigte Spalten (1.7.0 und day_night) fehlen in der CSV-Datei.")
 
@@ -61,14 +52,4 @@ statistic, p_value = mannwhitneyu(tag_data, nacht_data, alternative='greater')
 print("\n=== Mann-Whitney-U-Test ===")
 print(f"Teststatistik: {statistic:.2f}")
 print(f"p-Wert: {p_value:.70f}")
-
-# -------------------------------
-# 6. Ergebnis interpretieren
-# -------------------------------
-alpha = 0.05  # Signifikanzniveau
-if p_value < alpha:
-    print(f"Ergebnis: Die Nullhypothese wird abgelehnt. Tagsüber ist der Verbrauch signifikant höher als nachts (p < {alpha}).")
-else:
-    print(f"Ergebnis: Die Nullhypothese kann nicht abgelehnt werden. Kein signifikanter Unterschied zwischen Tag und Nacht (p >= {alpha}).")
-
 print("[INFO] Hypothesentest abgeschlossen.")
